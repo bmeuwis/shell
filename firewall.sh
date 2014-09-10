@@ -81,7 +81,8 @@ do
 FQDN=`echo $line | cut -d '(' -f 2 | sed -e 's:)::g' | sort | uniq`
 MYIP=`nslookup $FQDN | tail -2 | head -1 | awk '{ print $2 }'`
 echo "$MYIP" >> $WHITELIST
-report bmeuwis currently logged on with IP $MYIP and FQDN $FQDN - adding to whitelist.
+report bmeuwis currently logged on with IP $MYIP 
+report and FQDN $FQDN - adding to whitelist.
 done
 
 grep "Accepted password for bmeuwis" /var/log/secure | awk '{ print $11 }' | sort |  uniq >> $WHITELIST # Add IP of previously accepted user bmeuwis
